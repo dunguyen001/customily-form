@@ -16,7 +16,9 @@ function App() {
   }, []);
 
   const loadProductSetting = async () => {
+    setSetting();
     const setting = await getProductFromSetting(productRef.current.value);
+    console.log(setting)
     setSetting(setting);
   };
   return (
@@ -26,7 +28,7 @@ function App() {
           <input type="text" id="product" className="border" ref={productRef} />
           <button onClick={loadProductSetting}>Load</button>
         </div>
-        {setting ? <FormContainer {...setting.sets[0]} />  : null}
+        {setting ? <FormContainer productConfig={setting.productConfig} {...setting.sets[0]} />  : null}
       </div>
     </div>
   );
